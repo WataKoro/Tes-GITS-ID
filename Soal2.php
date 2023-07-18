@@ -1,15 +1,14 @@
 <?php
 function denseRanking($scores, $gitsScores) {
-    // Menghapus duplikat skor lalu urutkan dari besar ke kecil
-    $uniqueScores = array_unique($scores);
-    rsort($uniqueScores);
+    // Urutkan array dari besar ke kecil
+    rsort($scores);
 
     $ranks = array(); // Array untuk ranking
 
     foreach ($gitsScores as $gitsScore) {
         // Mencari indeks tempat GITS seharusnya berada dalam array skor unik
         $rank = 1;
-        foreach ($uniqueScores as $score) {
+        foreach ($scores as $score) {
             if ($gitsScore < $score) {
                 $rank++;
             } else {
@@ -23,7 +22,7 @@ function denseRanking($scores, $gitsScores) {
 }
 
 // Input jumlah pemain dan skornya
-$playerCount = readline("Masukkan nilai n: ");
+$playerCount = readline("Masukkan jumlah pemain: ");
 
 $scores = readline("Masukkan skor: ");
 $scoresValues = explode(' ', $scores);
